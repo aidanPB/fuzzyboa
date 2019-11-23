@@ -62,6 +62,9 @@ class Permission(Flag):
     YIELD = 0x40000000
     OVERT = 0x80000000
 
+DBRef = Union[int, 'WObject']
+PlayerRef = Union[int, 'WPlayer']
+
 class WObject:
     '''An object that forms part of the game world.'''
     def __init__(self,
@@ -69,8 +72,8 @@ class WObject:
                  typeflag: ObjectKind,
                  flags: Permission,
                  name: str,
-                 owner: Union[int, WObject],
-                 loc: Union[int, WObject],
+                 owner: PlayerRef,
+                 loc: DBRef,
                  ):
         self._dbref = dbref
         self._type = typeflag
